@@ -20,7 +20,7 @@ const InitPage = (props:propsType) => (
 
 function firstButton(randomNumber: number, setCount: Function) {
   return (
-    <button onClick={() => setCount(randomNumber + 1)}>
+    <button className="InitPage-button" onClick={() => setCount(randomNumber + 1)}>
       Random Number
       </button>
   )
