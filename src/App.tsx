@@ -1,24 +1,17 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import './css/App.css';
+import InitPage from './pages/InitPage';
 
-function App() {
+export default function App() {
+
+  const [randomNumber, setCount] = useState(0)
+
   return (
-    <div className="App">
+    <>
+      <div className="App"></div>
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
-    </div>
+      <InitPage randomNumber={randomNumber} setCount={setCount}></InitPage>
+    </>
   );
 }
-
-export default App;
