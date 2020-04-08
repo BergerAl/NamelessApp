@@ -33,8 +33,8 @@ export default function App() {
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        contentLabel="Example Modal">
-        <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName}></InitPage>
+        contentLabel="LoginPage">
+        <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName} setModalOpen={setIsOpen}></InitPage>
       </Modal>
     </>
   );

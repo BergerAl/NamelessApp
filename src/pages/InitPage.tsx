@@ -6,6 +6,7 @@ type propsType = {
   sendUserName: Function;
   textFieldInput: string;
   setFieldInput: Function;
+  setModalOpen: Function;
 }
 
 const InitPage = (props: propsType) => (
@@ -17,14 +18,14 @@ const InitPage = (props: propsType) => (
     </p>
     {credentialsFieldsRender(props.textFieldInput, props.setFieldInput)}
     <br />
-    {SendButton(props.textFieldInput, props.sendUserName)}
+    {SendButton(props.textFieldInput, props.sendUserName, props.setModalOpen)}
   </div>
 )
 
 
-function SendButton(textFieldInput: string, sendMessage: Function) {
+function SendButton(textFieldInput: string, sendUserName: Function, setModalOpen: Function) {
   return (
-    <button className="InitPage-button" onClick={() => sendMessage(textFieldInput)}>
+    <button className="InitPage-button" onClick={() => isUserNameViable(textFieldInput, sendUserName, setModalOpen)}>
       Login
     </button>
   )
@@ -36,9 +37,16 @@ function credentialsFieldsRender(textFieldInput: string, setFieldInput: Function
       <label className="InitPage-formText">Username:</label>
       <input type="text" id="inputField" name="inputField" value={textFieldInput} onChange={e => setFieldInput(e.target.value)} />
       <label className="InitPage-formText">Password:</label>
-      <input type="text" id="passwordField" name="passwordField"/>
+      <input type="text" id="passwordField" name="passwordField" />
     </div>
   )
+}
+
+function isUserNameViable(textFieldInput: string, sendUserName: Function, setModalOpen: Function) {
+  if (textFieldInput.length > 0) {
+    sendUserName(textFieldInput);
+    setModalOpen(false);
+  }
 }
 
 export default InitPage
