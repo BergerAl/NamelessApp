@@ -12,6 +12,7 @@ export default function App() {
 
   const [modalIsOpen, setIsOpen] = useState(true);
   const [textFieldInput, setFieldInput] = useState("");
+  const [chatRoomList] = useState([""]);
 
   function closeModal() {
     setIsOpen(false);
@@ -29,7 +30,7 @@ export default function App() {
         contentLabel="LoginPage">
         <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName} setModalOpen={setIsOpen} />
       </Modal>
-      <ChatRoomsPage />
+      <ChatRoomsPage listChatRooms={chatRoomList} joinChatRoom={client.joinRoom}/>
     </>
   );
 }

@@ -26,9 +26,12 @@ export default function () {
         }
     }
 
-    function listRooms(roomName: string) {
+    function listRooms() {
+        var list;
         if (!WebSocket.CONNECTING) {
-            socket.send(`/list ${roomName}`, (error) => checkCallback(error));
+            socket.send(`/list`, list);
+            console.log(`Following chatrooms are available: ${list}`);
+            return list;
         }
     }
 
@@ -42,6 +45,7 @@ export default function () {
         if (!WebSocket.CONNECTING) {
             socket.send(`/name ${name}`, (error) => checkCallback(error));
         }
+        listRooms();
     }
 
     function checkCallback(error: any) {
