@@ -3,7 +3,7 @@ import '../css/InitPage.css';
 import logo from '../css/images/beerbucket_logo.svg';
 
 type propsType = {
-  sendMessage: Function;
+  sendUserName: Function;
   textFieldInput: string;
   setFieldInput: Function;
 }
@@ -17,7 +17,7 @@ const InitPage = (props: propsType) => (
     </p>
     {credentialsFieldsRender(props.textFieldInput, props.setFieldInput)}
     <br />
-    {SendButton(props.textFieldInput, props.sendMessage)}
+    {SendButton(props.textFieldInput, props.sendUserName)}
   </div>
 )
 

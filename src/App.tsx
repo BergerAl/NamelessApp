@@ -34,7 +34,7 @@ export default function App() {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         contentLabel="Example Modal">
-        <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendMessage={client.newMessage}></InitPage>
+        <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName}></InitPage>
       </Modal>
     </>
   );
