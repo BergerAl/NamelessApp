@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './css/App.css';
 import InitPage from './pages/InitPage';
+import ChatRoomsPage from './pages/ChatRoomsPage';
 import socket from './functions/socket'
 import Modal from 'react-modal';
 
@@ -11,13 +12,6 @@ export default function App() {
 
   const [modalIsOpen, setIsOpen] = useState(true);
   const [textFieldInput, setFieldInput] = useState("");
-
-  function openModal() {
-    setIsOpen(true);
-  }
-  function afterOpenModal() {
-    //TODO what happens after Model; Set color for example
-  }
 
   function closeModal() {
     setIsOpen(false);
@@ -31,11 +25,11 @@ export default function App() {
         className="App-modal"
         overlayClassName="App-overlay"
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         contentLabel="LoginPage">
-        <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName} setModalOpen={setIsOpen}></InitPage>
+        <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName} setModalOpen={setIsOpen} />
       </Modal>
+      <ChatRoomsPage />
     </>
   );
 }
