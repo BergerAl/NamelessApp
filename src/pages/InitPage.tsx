@@ -33,12 +33,10 @@ function SendButton(textFieldInput: string, sendMessage: Function) {
 function credentialsFieldsRender(textFieldInput: string, setFieldInput: Function) {
   return (
     <div>
-      <form id="cred" action="javascript:void(0);">
-        <label className="InitPage-formText">Username:</label>
-        <input type="text" id="inputField" name="inputField" value={textFieldInput} onChange={e => setFieldInput(e.target.value)} />
-        <label className="InitPage-formText">Password:</label>
-        <input type="text" id="passwordField" name="passwordField"/>
-      </form>
+      <label className="InitPage-formText">Username:</label>
+      <input type="text" id="inputField" name="inputField" value={textFieldInput} onChange={e => setFieldInput(e.target.value)} />
+      <label className="InitPage-formText">Password:</label>
+      <input type="text" id="passwordField" name="passwordField"/>
     </div>
   )
 }
