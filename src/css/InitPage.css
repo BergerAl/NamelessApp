@@ -1,5 +1,5 @@
 .InitPage-button {
-    background-color: #557495; /* Green */
+    background-color: #164374;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -8,3 +8,14 @@
     font-size: 16px;
     border-radius: 3px;
   }
+
+.InitPage-logo {
+  display: flex;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.InitPage-formText {
+  display: flex;
+  font-size: calc(2px + 2vmin);
+}
