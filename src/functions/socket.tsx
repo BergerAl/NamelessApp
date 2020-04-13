@@ -1,4 +1,5 @@
 import WebSocket from 'isomorphic-ws';
+import {receiveMessage, createMessage, enumRequestType} from '../types/messages'
 
 export default function () {
     const socket = new WebSocket('ws://localhost:8080/ws/');
@@ -9,7 +10,7 @@ export default function () {
 
     socket.onopen = function connect() {
         console.log('connected');
-        socket.send(Date.now(), (error) => checkCallback(error));
+        //socket.send(Date.now());
     };
 
     socket.onclose = function close() {
@@ -22,28 +23,25 @@ export default function () {
 
     function newMessage(message: string) {
         if (!WebSocket.CONNECTING) {
-            socket.send(`${message}`, (error) => checkCallback(error));
+            socket.send(createMessage(enumRequestType.Message ,message));
         }
     }
 
     function listRooms() {
-        var list;
         if (!WebSocket.CONNECTING) {
-            socket.send(`/list`, list);
-            console.log(`Following chatrooms are available: ${list}`);
-            return list;
+            socket.send(createMessage(enumRequestType.List));
         }
     }
 
     function joinRoom(roomName: string) {
         if (!WebSocket.CONNECTING) {
-            socket.send(`/join ${roomName}`, (error) => checkCallback(error));
+            socket.send(createMessage(enumRequestType.Join ,roomName));
         }
     }
 
     function setName(name: string) {
         if (!WebSocket.CONNECTING) {
-            socket.send(`/name ${name}`, (error) => checkCallback(error));
+            socket.send(createMessage(enumRequestType.Name ,name));
         }
         listRooms();
     }
