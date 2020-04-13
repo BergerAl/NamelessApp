@@ -10,15 +10,15 @@ export default function () {
 
     socket.onopen = function connect() {
         console.log('connected');
-        //socket.send(Date.now());
     };
 
     socket.onclose = function close() {
         console.log('disconnected');
     };
 
-    socket.onmessage = function incomingMessage(data) {
-        console.log('Message from server ', data.data);
+    socket.onmessage = function incommingMessage(data) {
+        var incommingMessage = JSON.parse(data.data.toString());
+        console.log('Message from server ', incommingMessage);
     };
 
     function newMessage(message: string) {
@@ -43,7 +43,6 @@ export default function () {
         if (!WebSocket.CONNECTING) {
             socket.send(createMessage(enumRequestType.Name ,name));
         }
-        listRooms();
     }
 
     function checkCallback(error: any) {

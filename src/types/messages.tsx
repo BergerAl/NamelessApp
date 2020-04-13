@@ -13,7 +13,9 @@ export enum enumRequestType {
 }
 
 export type receiveMessage = {
-    content: string | string[],
+    request: enumRequestType,
+    nessage?: string,
+    roomList?: string[],
     error: string
 }
 
