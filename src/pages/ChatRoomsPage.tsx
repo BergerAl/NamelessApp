@@ -21,31 +21,33 @@ const getCardTitleStyle = () => ({
 const ChatRoomsPage = (props: propsType) => (
     <div className="App-body">
         <MuiThemeProvider>
-            <Paper
-                style={{ maxWidth: 600, marginBottom: 40 }}
-                zDepth={5}
-            >
-                <Wrapper>
-                    <Card>
-                        <CardMedia
-                            overlay={
-                                <CardTitle
-                                    title={props.listChatRooms}
-                                    style={getCardTitleStyle()}
-                                />
-                            }
-                        >
-                            <img height="100%" src={randomGooglePicture()} alt="" />
-                        </CardMedia>
-                    </Card>
-                </Wrapper>
-            </Paper>
+            {props.listChatRooms.map(chatroom => (
+                <Paper
+                    style={{ maxWidth: 600, marginBottom: 40 }}
+                    zDepth={5}
+                >
+                    <Wrapper>
+                        <Card>
+                            <CardMedia
+                                overlay={
+                                    <CardTitle
+                                        title={chatroom}
+                                        style={getCardTitleStyle()}
+                                    />
+                                }
+                            >
+                                <img height="100%" src={randomGooglePicture()} alt="" />
+                            </CardMedia>
+                        </Card>
+                    </Wrapper>
+                </Paper>))}
+
         </MuiThemeProvider>
     </div>
 )
 
 function randomGooglePicture() {
-    return (`https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/${(Math.floor(Math.random() * Math.floor(17)))}.jpg`)
+    return (`https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/${(Math.floor(Math.random() * Math.floor(16))+1)}.jpg`)
 }
 
 export default ChatRoomsPage

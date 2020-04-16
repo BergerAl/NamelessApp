@@ -46,7 +46,7 @@ export default function () {
     function setName(name: string) {
         if (!WebSocket.CONNECTING) {
             socket.send(createMessage(enumRequestType.Name ,name));
-        }
+        }  
     }
 
     function interpreteMessage(message: receiveMessage) {
