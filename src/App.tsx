@@ -12,25 +12,27 @@ export default function App() {
 
   const [modalIsOpen, setIsOpen] = useState(true);
   const [textFieldInput, setFieldInput] = useState("");
-  const [chatRoomList] = useState([""]);
+  const [chatRoomList, setListRooms] = useState([""]);
 
   function closeModal() {
+    client.listRooms(chatRoomList, setListRooms);
     setIsOpen(false);
   }
   return (
     <>
-      <div className="App"></div>
-      <header className="App-header">
-      </header>
-      <Modal
-        className="App-modal"
-        overlayClassName="App-overlay"
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="LoginPage">
-        <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName} setModalOpen={setIsOpen} />
-      </Modal>
-      <ChatRoomsPage listChatRooms={chatRoomList} joinChatRoom={client.joinRoom}/>
+      <div className="App">
+        <header className="App-header">
+        </header>
+        <Modal
+          className="App-modal"
+          overlayClassName="App-overlay"
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="LoginPage">
+          <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName} setModalOpen={closeModal} />
+        </Modal>
+        <ChatRoomsPage listChatRooms={chatRoomList} joinChatRoom={client.joinRoom} />
+      </div>
     </>
   );
 }

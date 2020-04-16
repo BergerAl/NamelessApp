@@ -3,7 +3,8 @@ import {receiveMessage, createMessage, enumRequestType} from '../types/messages'
 
 export default function () {
     const socket = new WebSocket('ws://localhost:8080/ws/');
-
+    var chatRoomList: string[];
+    var setRoomList: Function;
     socket.onerror = function errorMessage() {
         console.log(`Some Error happend!`);
     }
@@ -18,6 +19,7 @@ export default function () {
 
     socket.onmessage = function incommingMessage(data) {
         var incommingMessage = JSON.parse(data.data.toString());
+        interpreteMessage(incommingMessage);
         console.log('Message from server ', incommingMessage);
     };
 
@@ -27,8 +29,10 @@ export default function () {
         }
     }
 
-    function listRooms() {
+    function listRooms(chatRoomList: string[], setListRooms: Function) {
         if (!WebSocket.CONNECTING) {
+            chatRoomList = chatRoomList;
+            setRoomList = setListRooms;
             socket.send(createMessage(enumRequestType.List));
         }
     }
@@ -45,11 +49,27 @@ export default function () {
         }
     }
 
-    function checkCallback(error: any) {
-        //TODO: Implement Error Handling and Error Response in Backend
-        console.log(`Some Error Happend: ${error}`);
-        return true;
+    function interpreteMessage(message: receiveMessage) {
+        switch(message.request) {
+            case 0: {
+                //message
+                break;
+            }
+            case 1: {
+                //list
+                setRoomList(message.room_list);
+                break;
+            }
+            case 2: {
+                //name
+                break;
+            }
+            case 3: {
+                //join
+            }
+        }
     }
+
     return {
         newMessage,
         listRooms,
