@@ -15,7 +15,7 @@ export default function App() {
   const [chatRoomList, setListRooms] = useState([""]);
 
   function closeModal() {
-    client.listRooms(chatRoomList, setListRooms);
+    client.listRooms(setListRooms);
     setIsOpen(false);
   }
   return (

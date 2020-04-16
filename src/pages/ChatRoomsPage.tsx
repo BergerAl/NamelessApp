@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/ChatRoomPage.css'
 import styled from 'styled-components'
 import Paper from 'material-ui/Paper';

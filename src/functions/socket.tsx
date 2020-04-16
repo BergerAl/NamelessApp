@@ -3,7 +3,6 @@ import {receiveMessage, createMessage, enumRequestType} from '../types/messages'
 
 export default function () {
     const socket = new WebSocket('ws://localhost:8080/ws/');
-    var chatRoomList: string[];
     var setRoomList: Function;
     socket.onerror = function errorMessage() {
         console.log(`Some Error happend!`);
@@ -29,9 +28,8 @@ export default function () {
         }
     }
 
-    function listRooms(chatRoomList: string[], setListRooms: Function) {
+    function listRooms(setListRooms: Function) {
         if (!WebSocket.CONNECTING) {
-            chatRoomList = chatRoomList;
             setRoomList = setListRooms;
             socket.send(createMessage(enumRequestType.List));
         }
