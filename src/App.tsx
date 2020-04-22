@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './css/App.css';
 import InitPage from './pages/InitPage';
 import ChatRoomsPage from './pages/ChatRoomsPage';
+import NavAppBar from './components/NavBar';
 import socket from './functions/socket'
 import Modal from 'react-modal';
 
@@ -11,7 +12,7 @@ Modal.setAppElement('#root')
 export default function App() {
 
   const [modalIsOpen, setIsOpen] = useState(true);
-  const [textFieldInput, setFieldInput] = useState("");
+  const [userName, setUserName] = useState("");
   const [chatRoomList, setListRooms] = useState([""]);
 
   function closeModal() {
@@ -29,10 +30,18 @@ export default function App() {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel="LoginPage">
-          <InitPage textFieldInput={textFieldInput} setFieldInput={setFieldInput} sendUserName={client.setName} setModalOpen={closeModal} />
+          <InitPage textFieldInput={userName} setFieldInput={setUserName} sendUserName={client.setName} setModalOpen={closeModal} />
         </Modal>
-        <ChatRoomsPage listChatRooms={chatRoomList} joinChatRoom={client.joinRoom} />
+        {<NavAppBar userName={userName} chatRoomList={chatRoomList} joinChatRoom={client.joinRoom}/>}
+        {AppBody(chatRoomList)}
       </div>
     </>
   );
+}
+
+function AppBody(chatRoomList: string[]) {
+
+  return (
+    <ChatRoomsPage listChatRooms={chatRoomList} joinChatRoom={client.joinRoom} />
+  )
 }

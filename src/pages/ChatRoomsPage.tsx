@@ -28,7 +28,7 @@ const ChatRoomsPage = (props: propsType) => (
                         style={{ maxWidth: 600, marginBottom: 40 }}
                         zDepth={5}
                     >
-                        <Wrapper>
+                        {/* <Wrapper>
                             <Card>
                                 <CardMedia
                                     overlay={
@@ -41,7 +41,7 @@ const ChatRoomsPage = (props: propsType) => (
                                     <img height="100%" src={randomGooglePicture()} alt="" />
                                 </CardMedia>
                             </Card>
-                        </Wrapper>
+                        </Wrapper> */}
                     </Paper>))}
             </div>
         </MuiThemeProvider>
